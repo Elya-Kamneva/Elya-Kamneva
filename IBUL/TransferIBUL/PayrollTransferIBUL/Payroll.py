@@ -1,7 +1,7 @@
 import requests
 import time
-from auth import get_auth_token
-from file_storage import save_data, load_data
+from IBUL.AuthIBUL.auth import get_auth_token
+from IBUL.Files.file_storage import save_data, load_data
 from datetime import datetime
 
 # Адрес API и Bearer токен
@@ -10,8 +10,12 @@ api_url2 = "https://legal-test.altyn-i.kz/api/workflow/documentAction"  # URL о
 api_url3 = "https://legal-test.altyn-i.kz/api/signing/checkSMS"  # URL подписания
 api_url_sms_request = "https://legal-test.altyn-i.kz/api/signing/sms-request"
 bearer_token = get_auth_token()
+# текущий день
 val_date = datetime.now().strftime("%d.%m.%Y")
-period = datetime.now().strftime("%m.%Y")
+
+# следующий день
+#val_date = (datetime.now() + timedelta(days=1)).strftime("%d.%m.%Y")
+
 
 # Заголовки
 headers = {
@@ -20,7 +24,7 @@ headers = {
 }
 
 # Начальные значения для `amount` и `number`
-data = load_data("init_data.json")
+data = load_data("../../Files/init_data.json")
 start_amount = data.get("start_amount")
 start_number = data.get("start_number")
 
@@ -38,7 +42,6 @@ for i in range(iterations):
             "lastName": "Азыкеев",
             "middleName": "Даулбаевич",
             "bin": "870330350942",
-            "birthDate": "06.02.1987",
             "account": "KZ87722C000030907447",
         },
         {
@@ -46,7 +49,6 @@ for i in range(iterations):
             "lastName": "Акалелов",
             "middleName": "Игоревич",
             "bin": "831217301589",
-            "birthDate": "06.02.1987",
             "account": "KZ31722C000020803383",
         },
         {
@@ -54,7 +56,6 @@ for i in range(iterations):
             "lastName": "Бекмаганбетова",
             "middleName": "Баймуханқызы",
             "bin": "750708401544",
-            "birthDate": "06.02.1987",
             "account": "KZ67722C000025830245",
         },
         {
@@ -62,7 +63,6 @@ for i in range(iterations):
             "lastName": "Беркимбаева",
             "middleName": "Муратовна",
             "bin": "860508451050",
-            "birthDate": "06.02.1987",
             "account": "KZ88722C000024978983",
         },
         {
@@ -70,7 +70,6 @@ for i in range(iterations):
             "lastName": "Бородин",
             "middleName": "Серафимович",
             "bin": "061111500446",
-            "birthDate": "06.02.1987",
             "account": "KZ38722C000074939442",
         },
         {
@@ -78,7 +77,6 @@ for i in range(iterations):
             "lastName": "Дакенова",
             "middleName": "Салимгереевна",
             "bin": "980720450654",
-            "birthDate": "06.02.1987",
             "account": "KZ42722C000027615204",
         },
         {
@@ -86,7 +84,6 @@ for i in range(iterations):
             "lastName": "Даукенова",
             "middleName": "Нұрлыбекқызы",
             "bin": "960628451282",
-            "birthDate": "06.02.1987",
             "account": "KZ90722C000013276770",
         },
         {
@@ -94,7 +91,6 @@ for i in range(iterations):
             "lastName": "Есимбекова",
             "middleName": "Канатовна",
             "bin": "910130400648",
-            "birthDate": "06.02.1987",
             "account": "KZ04722C000014689086",
         },
         {
@@ -102,7 +98,6 @@ for i in range(iterations):
             "lastName": "Ешков",
             "middleName": "Юрьевич",
             "bin": "870412301147",
-            "birthDate": "06.02.1987",
             "account": "KZ55722C000020415145",
         },
         {
@@ -110,7 +105,6 @@ for i in range(iterations):
             "lastName": "Қарақұлова",
             "middleName": "Нурланқызы",
             "bin": "911211401193",
-            "birthDate": "06.02.1987",
             "account": "KZ62722C000023472653",
         }
     ]
@@ -136,9 +130,9 @@ for i in range(iterations):
             "taxCode": employee["bin"],
             "kbe": "29",
             "countryCode": "RU",
-            "birthDate": employee["birthDate"],
+            "birthDate": None,
             "reason": None,
-            "period": period,
+            "period": None,
             "deductionType": None
         })
 
@@ -150,7 +144,7 @@ for i in range(iterations):
         "currency": "KZT",
         "currencyDigital": None,
         "balance": 44460566.57,
-        "plannedBalance": -3590295144.28,
+        "plannedBalance": -3590294150.28,
         "alias": "XXX",
         "externalCustomerId": None,
         "type": None,
@@ -160,9 +154,9 @@ for i in range(iterations):
     },
     "amount": start_amount,
     "valueDate": val_date,
-    "purpose": "Обязательные профессиональные пенсионные взносы",
-    "purposeCode": "015",
-    "purposeText": "Обязательные профессиональные пенсионные взносы",
+    "purpose": "Перечисление юридическим лицом в банк заработной платы, оплаты трудового отпуска для последующего за",
+    "purposeCode": "332",
+    "purposeText": "Перечисление юридическим лицом в банк заработной платы, оплаты трудового отпуска для последующего за",
     "priority": False,
     "number": start_number,
     "isTemplate": False,
@@ -182,25 +176,22 @@ for i in range(iterations):
         "fullName": "Не предусмотрен"
     },
     "info": None,
-    "benefName": "НАО «Государственная корпорация «Правительство для граждан»",
-    "bankName": "НАО \"Государственная корпорация «Правительство для граждан\"",
-    "benefTaxCode": "160440007161",
-    "benefAccount": "KZ12009NPS0413609816",
-    "benefBankCode": "GCVPKZ2A",
-    "benefResidencyCode": "11",
-    "domesticTransferType": "PensionContribution",
+    "benefName": "Акционерное общество «Kaspi Bank»",
+    "benefTaxCode": "971240001315",
+    "benefAccount": "KZ24722S000000686267",
+    "benefBankCode": "CASPKZKA",
+    "benefResidencyCode": "14",
+    "domesticTransferType": "Payroll",
     "employees": employees,
-    "employeeTransferCategory": "P",
-    "employeeTransferPeriod": None,
     "isLoanPay": False,
     "isRaw": False,
     "isSubsidiaryOrganization": False,
     "subsidiaryOrganizationId": None,
     "serverhubLinkMetadataDtoList": [],
     "actualPayer": {
-        "name": "ТОО \"Arena S\" (Арена S)",
-        "taxCode": "090840013770",
-        "isJuridical": True
+        "name": "Камнева Элина Станиславовна",
+        "taxCode": "971228400872",
+        "isJuridical": False
     }
 }
 

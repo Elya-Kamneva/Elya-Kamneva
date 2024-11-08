@@ -1,7 +1,7 @@
 import requests
 import time
-from auth import get_auth_token
-from file_storage import save_data, load_data
+from IBUL.AuthIBUL.auth import get_auth_token
+from IBUL.Files.file_storage import save_data, load_data
 from datetime import datetime
 
 # Адрес API и Bearer токен
@@ -10,7 +10,11 @@ api_url2 = "https://legal-test.altyn-i.kz/api/workflow/documentAction"  # URL о
 api_url3 = "https://legal-test.altyn-i.kz/api/signing/checkSMS"  # URL подписания
 api_url_sms_request = "https://legal-test.altyn-i.kz/api/signing/sms-request"
 bearer_token = get_auth_token()
+# текущий день
 val_date = datetime.now().strftime("%d.%m.%Y")
+
+# следующий день
+#val_date = (datetime.now() + timedelta(days=1)).strftime("%d.%m.%Y")
 
 # Заголовки
 headers = {
@@ -19,12 +23,12 @@ headers = {
 }
 
 # Начальные значения для `amount` и `number`
-data = load_data("init_data.json")
+data = load_data("../../Files/init_data.json")
 start_amount = data.get("start_amount")
 start_number = data.get("start_number")
 
 # Количество итераций
-iterations = 2
+iterations = 500
 
 # Выполнение запросов
 for i in range(iterations):
@@ -74,11 +78,11 @@ for i in range(iterations):
             "label": "Не предусмотрен",
             "fullName": "Не предусмотрен"
         },
-        "benefName": "ДБ АО \"Altyn Bank КАЗАХСТАН\"",
-        "benefTaxCode": "980740000057",
-        "benefAccount": "KZ859490001910702001",
-        "benefBankCode": "ATYNKZKA",
-        "benefResidencyCode": "14",
+        "benefName": "ТОО PETRORETAIL",
+        "benefTaxCode": "181040037076",
+        "benefAccount": "KZ986018771000060121",
+        "benefBankCode": "HSBKKZKX",
+        "benefResidencyCode": "19",
         "vat": None,
         "budgetCode": "",
         "vinCode": None,
@@ -91,7 +95,7 @@ for i in range(iterations):
         "numberOfAdministrativeAffairs": "",
         "isRaw": False,
         "kvo": None,
-        "benefCountryCode": "RU",
+        "benefCountryCode": "",
         "serverhubLinkMetadataDtoList": [],
         "actualPayer": {
             "name": "Камнева Элина Станиславовна",

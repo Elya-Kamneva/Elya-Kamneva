@@ -1,7 +1,7 @@
 import requests
 import time
-from auth import get_auth_token
-from file_storage import save_data, load_data
+from IBUL.AuthIBUL.auth import get_auth_token
+from IBUL.Files.file_storage import save_data, load_data
 from datetime import datetime
 
 # Адрес API и Bearer токен
@@ -10,7 +10,12 @@ api_url2 = "https://legal-test.altyn-i.kz/api/workflow/documentAction"  # URL о
 api_url3 = "https://legal-test.altyn-i.kz/api/signing/checkSMS"  # URL подписания
 api_url_sms_request = "https://legal-test.altyn-i.kz/api/signing/sms-request"
 bearer_token = get_auth_token()
+# текущий день
 val_date = datetime.now().strftime("%d.%m.%Y")
+
+# следующий день
+#val_date = (datetime.now() + timedelta(days=1)).strftime("%d.%m.%Y")
+
 period = datetime.now().strftime("%m.%Y")
 
 # Заголовки
@@ -20,7 +25,7 @@ headers = {
 }
 
 # Начальные значения для `amount` и `number`
-data = load_data("init_data.json")
+data = load_data("../../Files/init_data.json")
 start_amount = data.get("start_amount")
 start_number = data.get("start_number")
 
@@ -134,8 +139,8 @@ for i in range(iterations):
             "amount": employee_amount,
             "account": employee["account"],
             "taxCode": employee["bin"],
-            "kbe": "",
-            "countryCode": "",
+            "kbe": "29",
+            "countryCode": "RU",
             "birthDate": employee["birthDate"],
             "reason": None,
             "period": period,
@@ -146,29 +151,23 @@ for i in range(iterations):
     "account": {
         "id": 34053,
         "number": "KZ559491100003471026",
-        "cardNumber": None,
+        "cardNumber": "KZ559491100003471026",
         "currency": "KZT",
         "currencyDigital": None,
         "balance": 44460566.57,
-        "plannedBalance": -3590321126.28,
+        "plannedBalance": -3590295144.28,
         "alias": "XXX",
         "externalCustomerId": None,
         "type": None,
         "accountType": "Current",
         "expirationDate": None,
-        "status": {
-            "id": None,
-            "code": "1",
-            "label": "Открыт",
-            "subCode": "1",
-            "subLabel": "Открыт"
-        }
+        "status": None
     },
     "amount": start_amount,
     "valueDate": val_date,
-    "purpose": "Отчисления на обязательное социальное медицинское страхование",
-    "purposeCode": "121",
-    "purposeText": "Отчисления на обязательное социальное медицинское страхование",
+    "purpose": "Обязательные профессиональные пенсионные взносы",
+    "purposeCode": "015",
+    "purposeText": "Обязательные профессиональные пенсионные взносы",
     "priority": False,
     "number": start_number,
     "isTemplate": False,
@@ -188,15 +187,15 @@ for i in range(iterations):
         "fullName": "Не предусмотрен"
     },
     "info": None,
-    "benefName": "НАО \"Гос. корпорация \"Правительство для граждан\"",
+    "benefName": "НАО «Государственная корпорация «Правительство для граждан»",
+    "bankName": "НАО \"Государственная корпорация «Правительство для граждан\"",
     "benefTaxCode": "160440007161",
-    "benefAccount": "KZ92009MEDS368609103",
+    "benefAccount": "KZ12009NPS0413609816",
     "benefBankCode": "GCVPKZ2A",
     "benefResidencyCode": "11",
-    "bankName": "НАО \"Государственная корпорация «Правительство для граждан\"",
-    "domesticTransferType": "MedicalContribution",
+    "domesticTransferType": "PensionContribution",
     "employees": employees,
-    "employeeTransferCategory": "R",
+    "employeeTransferCategory": "P",
     "employeeTransferPeriod": None,
     "isLoanPay": False,
     "isRaw": False,
@@ -204,9 +203,9 @@ for i in range(iterations):
     "subsidiaryOrganizationId": None,
     "serverhubLinkMetadataDtoList": [],
     "actualPayer": {
-        "name": "Камнев Алан Михайлович",
-        "taxCode": "970505300056",
-        "isJuridical": False
+        "name": "ТОО \"Arena S\" (Арена S)",
+        "taxCode": "090840013770",
+        "isJuridical": True
     }
 }
 
