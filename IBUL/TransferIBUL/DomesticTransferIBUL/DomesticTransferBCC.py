@@ -1,7 +1,7 @@
 import requests
 import time
-from IBUL.AuthIBUL.auth import get_auth_token
-from IBUL.Files.file_storage import save_data, load_data
+from IBUL.AuthIBUL.authIBUL import get_auth_token
+from IBUL.Files.file_storage_IBUL import save_data, load_data
 from datetime import datetime
 
 # Адрес API и Bearer токен
@@ -82,7 +82,7 @@ for i in range(iterations):
         "benefTaxCode": "220950030935",
         "benefAccount": "KZ768562013118635097",
         "benefBankCode": "KCJBKZKX",
-        "benefResidencyCode": "24",
+        "benefResidencyCode": "14",
         "vat": None,
         "budgetCode": "",
         "vinCode": None,
@@ -95,7 +95,7 @@ for i in range(iterations):
         "numberOfAdministrativeAffairs": "",
         "isRaw": False,
         "kvo": None,
-        "benefCountryCode": "RU",
+        "benefCountryCode": "",
         "serverhubLinkMetadataDtoList": [],
         "actualPayer": {
             "name": "Камнева Элина Станиславовна",

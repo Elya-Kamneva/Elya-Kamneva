@@ -1,7 +1,7 @@
 import requests
 import time
-from IBUL.AuthIBUL.auth import get_auth_token
-from IBUL.Files.file_storage import save_data, load_data
+from IBUL.AuthIBUL.authIBUL import get_auth_token
+from IBUL.Files.file_storage_IBUL import save_data, load_data
 from datetime import datetime
 
 # Адрес API и Bearer токен
