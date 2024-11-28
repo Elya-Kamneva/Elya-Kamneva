@@ -2,7 +2,7 @@ import requests
 import time
 from IBUL.AuthIBUL.authIBUL import get_auth_token
 from IBUL.Files.file_storage_IBUL import save_data, load_data
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # Адрес API и Bearer токен
 api_url1 = "https://legal-test.altyn-i.kz/api/payment/domestic-transfer/new"  # URL создания
@@ -11,10 +11,10 @@ api_url3 = "https://legal-test.altyn-i.kz/api/signing/checkSMS"  # URL подп�
 api_url_sms_request = "https://legal-test.altyn-i.kz/api/signing/sms-request"
 bearer_token = get_auth_token()
 # текущий день
-val_date = datetime.now().strftime("%d.%m.%Y")
+#val_date = datetime.now().strftime("%d.%m.%Y")
 
 # следующий день
-#val_date = (datetime.now() + timedelta(days=1)).strftime("%d.%m.%Y")
+val_date = (datetime.now() + timedelta(days=1)).strftime("%d.%m.%Y")
 
 period = datetime.now().strftime("%m.%Y")
 
@@ -30,7 +30,7 @@ start_amount = data.get("start_amount")
 start_number = data.get("start_number")
 
 # Количество итераций
-iterations = 260
+iterations = 450
 
 # Выполнение запросов
 for i in range(iterations):
@@ -44,7 +44,6 @@ for i in range(iterations):
             "middleName": "Даулбаевич",
             "bin": "870330350942",
             "birthDate": "06.02.1987",
-            "account": "KZ87722C000030907447",
         },
         {
             "firstName": "Роман",
@@ -52,7 +51,6 @@ for i in range(iterations):
             "middleName": "Игоревич",
             "bin": "831217301589",
             "birthDate": "06.02.1987",
-            "account": "KZ31722C000020803383",
         },
         {
             "firstName": "Ақтоты",
@@ -60,7 +58,6 @@ for i in range(iterations):
             "middleName": "Баймуханқызы",
             "bin": "750708401544",
             "birthDate": "06.02.1987",
-            "account": "KZ67722C000025830245",
         },
         {
             "firstName": "Алия",
@@ -68,15 +65,13 @@ for i in range(iterations):
             "middleName": "Муратовна",
             "bin": "860508451050",
             "birthDate": "06.02.1987",
-            "account": "KZ88722C000024978983",
         },
         {
             "firstName": "Данила",
             "lastName": "Бородин",
             "middleName": "Серафимович",
             "bin": "061111500446",
-            "birthDate": "06.02.1987",
-            "account": "KZ38722C000074939442",
+            "birthDate": "06.02.1987"
         },
         {
             "firstName": "Динара",
@@ -84,7 +79,6 @@ for i in range(iterations):
             "middleName": "Салимгереевна",
             "bin": "980720450654",
             "birthDate": "06.02.1987",
-            "account": "KZ42722C000027615204",
         },
         {
             "firstName": "Назерке",
@@ -92,7 +86,6 @@ for i in range(iterations):
             "middleName": "Нұрлыбекқызы",
             "bin": "960628451282",
             "birthDate": "06.02.1987",
-            "account": "KZ90722C000013276770",
         },
         {
             "firstName": "Раушан",
@@ -100,7 +93,6 @@ for i in range(iterations):
             "middleName": "Канатовна",
             "bin": "910130400648",
             "birthDate": "06.02.1987",
-            "account": "KZ04722C000014689086",
         },
         {
             "firstName": "Олег",
@@ -108,7 +100,6 @@ for i in range(iterations):
             "middleName": "Юрьевич",
             "bin": "870412301147",
             "birthDate": "06.02.1987",
-            "account": "KZ55722C000020415145",
         },
         {
             "firstName": "Айнамкөз",
@@ -116,7 +107,6 @@ for i in range(iterations):
             "middleName": "Нурланқызы",
             "bin": "911211401193",
             "birthDate": "06.02.1987",
-            "account": "KZ62722C000023472653",
         }
     ]
 
@@ -137,7 +127,6 @@ for i in range(iterations):
             "lastName": employee["lastName"],
             "middleName": employee["middleName"],
             "amount": employee_amount,
-            "account": employee["account"],
             "taxCode": employee["bin"],
             "kbe": "",
             "countryCode": "",

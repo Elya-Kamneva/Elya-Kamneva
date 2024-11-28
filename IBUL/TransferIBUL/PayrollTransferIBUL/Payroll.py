@@ -2,7 +2,7 @@ import requests
 import time
 from IBUL.AuthIBUL.authIBUL import get_auth_token
 from IBUL.Files.file_storage_IBUL import save_data, load_data
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # Адрес API и Bearer токен
 api_url1 = "https://legal-test.altyn-i.kz/api/payment/domestic-transfer/new"  # URL создания
@@ -11,10 +11,10 @@ api_url3 = "https://legal-test.altyn-i.kz/api/signing/checkSMS"  # URL подп�
 api_url_sms_request = "https://legal-test.altyn-i.kz/api/signing/sms-request"
 bearer_token = get_auth_token()
 # текущий день
-val_date = datetime.now().strftime("%d.%m.%Y")
+#val_date = datetime.now().strftime("%d.%m.%Y")
 
 # следующий день
-#val_date = (datetime.now() + timedelta(days=1)).strftime("%d.%m.%Y")
+val_date = (datetime.now() + timedelta(days=1)).strftime("%d.%m.%Y")
 
 
 # Заголовки
@@ -29,7 +29,7 @@ start_amount = data.get("start_amount")
 start_number = data.get("start_number")
 
 # Количество итераций
-iterations = 2
+iterations = 500
 
 # Выполнение запросов
 for i in range(iterations):

@@ -2,7 +2,7 @@ import requests
 import time
 from IBUL.AuthIBUL.authIBUL import get_auth_token
 from IBUL.Files.file_storage_IBUL import save_data, load_data
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # Адрес API и Bearer токен
 api_url1 = "https://legal-test.altyn-i.kz/api/payment/domestic-transfer/new"  # URL создания
@@ -11,10 +11,10 @@ api_url3 = "https://legal-test.altyn-i.kz/api/signing/checkSMS"  # URL подп�
 api_url_sms_request = "https://legal-test.altyn-i.kz/api/signing/sms-request"
 bearer_token = get_auth_token()
 # текущий день
-val_date = datetime.now().strftime("%d.%m.%Y")
+# val_date = datetime.now().strftime("%d.%m.%Y")
 
 # следующий день
-#val_date = (datetime.now() + timedelta(days=1)).strftime("%d.%m.%Y")
+val_date = (datetime.now() + timedelta(days=1)).strftime("%d.%m.%Y")
 
 # Заголовки
 headers = {
@@ -58,9 +58,9 @@ for i in range(iterations):
     },
     "amount": start_amount,
     "valueDate": val_date,
-    "purpose": "testISO08112024",
+    "purpose": "testISO19112024",
     "purposeCode": "911",
-    "purposeText": "testISO08112024 Hалог на имущество физических лиц Комиссионное вознаграждение АО «ЕНПФ», ДНПФ от суммы пенс-ых активов, АО «ГФСС» от суммы его активов",
+    "purposeText": "testISO19112024 Hалог на имущество физических лиц Комиссионное вознаграждение АО «ЕНПФ», ДНПФ от суммы пенс-ых активов, АО «ГФСС» от суммы его активов",
     "priority": False,
     "number": start_number,
     "isTemplate": False,
@@ -92,10 +92,10 @@ for i in range(iterations):
     "isPermitGiveInformation": False,
     "isLoanPay": False,
     "isSubsidiaryOrganization": False,
-    "numberOfAdministrativeAffairs": "",
+    "numberOfAdministrativeAffairs": None,
     "isRaw": False,
     "kvo": None,
-    "benefCountryCode": "",
+    "benefCountryCode": None,
     "serverhubLinkMetadataDtoList": []
 }
 

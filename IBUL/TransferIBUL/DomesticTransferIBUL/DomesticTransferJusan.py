@@ -11,10 +11,10 @@ api_url3 = "https://legal-test.altyn-i.kz/api/signing/checkSMS"  # URL подп�
 api_url_sms_request = "https://legal-test.altyn-i.kz/api/signing/sms-request"
 bearer_token = get_auth_token()
 # текущий день
-val_date = datetime.now().strftime("%d.%m.%Y")
+# val_date = datetime.now().strftime("%d.%m.%Y")
 
 # следующий день
-#val_date = (datetime.now() + timedelta(days=1)).strftime("%d.%m.%Y")
+val_date = (datetime.now() + timedelta(days=1)).strftime("%d.%m.%Y")
 
 # Заголовки
 headers = {
@@ -78,11 +78,11 @@ for i in range(iterations):
             "label": "Не предусмотрен",
             "fullName": "Не предусмотрен"
         },
-        "benefName": "АКЦИОНЕРНОЕОБЩЕСТВО\"БКСБАНК\"",
-        "benefTaxCode": "220950030935",
-        "benefAccount": "KZ768562013118635097",
-        "benefBankCode": "KCJBKZKX",
-        "benefResidencyCode": "14",
+        "benefName": "ТОО \"Alterra Inn\"",
+        "benefTaxCode": "100240005414",
+        "benefAccount": "KZ39998CTB0000808117",
+        "benefBankCode": "TSESKZKA",
+        "benefResidencyCode": "17",
         "vat": None,
         "budgetCode": "",
         "vinCode": None,
@@ -95,7 +95,7 @@ for i in range(iterations):
         "numberOfAdministrativeAffairs": "",
         "isRaw": False,
         "kvo": None,
-        "benefCountryCode": "",
+        "benefCountryCode": "GP",
         "serverhubLinkMetadataDtoList": [],
         "actualPayer": {
             "name": "Камнева Элина Станиславовна",

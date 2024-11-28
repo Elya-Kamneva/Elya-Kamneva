@@ -28,7 +28,7 @@ start_amount = data.get("start_amount")
 start_number = data.get("start_number")
 
 # Количество итераций
-iterations = 500
+iterations = 100
 
 # Выполнение запросов
 for i in range(iterations):
@@ -61,7 +61,7 @@ for i in range(iterations):
         "purpose": "111",
         "purposeCode": "859",
         "purposeText": "testISO23102024 Платежи за профессиональные, научные и технические услуги",
-        "priority": False,
+        "priority": True,
         "number": start_number,
         "isTemplate": False,
         "director": {
